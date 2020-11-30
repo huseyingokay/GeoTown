@@ -14,3 +14,11 @@ function City(name) {
 City.prototype.addDistrict = function (district) {
     this.districtList.push(district);
 }
+
+City.prototype.getDistrict = function (name) {
+    for (var district in this.districtList) {
+        if(district.name == name)
+            return district;
+    }
+    return null;
+}
