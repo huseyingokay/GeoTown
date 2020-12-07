@@ -6,16 +6,21 @@
   <link rel="stylesheet" href="index.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <script> </script>
+  <script src="scripts/city.js"></script>
+  <script src="scripts/database.js"></script>
+  <script src="scripts/district.js"></script>
+  <script src="scripts/gameManager.js"></script>
+  <script src="scripts/map.js"></script>
 </head>
 
-<body>
+<body onload="Game.init()">
   <header>
     GeoTown
   </header>
 
   <script>//add row to table when click submit
     function submitFunction() {
+      Game.giveInput(document.getElementById("town").value);
       var table = document.getElementById("myTable");
       var row = table.insertRow(table.rows.length - 1);
       var cell1 = row.insertCell(0);
@@ -160,7 +165,7 @@
 
     <div class="rightSide">
       <h1>Right side</h1>
-
+      <div id="map"></div>
     </div>
     <div id="clear"></div>
   </div>

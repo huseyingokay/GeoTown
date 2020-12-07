@@ -43,6 +43,8 @@ GameManager.prototype.isGameOver = function () {
  * @param {string} districtName 
  */
 GameManager.prototype.giveInput = function (districtName) {
+    TownMap.updateMap(districtName);
+    /*
     if (this.startTime == null)
         this.startTime = new Date();
     var districts = TownDatabase.getDistricts(districtName);
@@ -53,6 +55,7 @@ GameManager.prototype.giveInput = function (districtName) {
             return false;
     else
         return null;
+        */
 }
 
 /**

@@ -10,21 +10,22 @@ function Database() {
 /**
  * Reads the JSON file of database.
  */
-Database.prototype.readJSONFile = function() {
+Database.prototype.readJSONFile = function () {
     var connection = new XMLHttpRequest();
     connection.onreadystatechange = readData;
     connection.open("GET", "./assets/database.json", true);
     connection.send();
+    var outerThis = this;
     function readData() {
         if (connection.readyState == 4) {
             var data = JSON.parse(this.responseText);
-            for (var cityData in data) {
-                var city = new City(cityData.name);
-                for (var districtData in cityData.districts) {
-                    new District(city, districtData.name, districtData.population, districtData.area);
-                    ++this.districtCount;
+            for (var i = 0; i < data.length; ++i) {
+                var city = new City(data[i].name);
+                for (var j = 0; j < data[i].districts.length; ++j) {
+                    new District(city, data[i].districts[j].name, data[i].districts[j].population, data[i].districts[j].area);
+                    ++outerThis.districtCount;
                 }
-                this.cityList.push(city);
+                outerThis.cityList.push(city);
             }
         }
     }
