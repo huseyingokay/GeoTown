@@ -4,16 +4,18 @@
 <head>
     <title>GeoTown</title>
     <link rel="stylesheet" href="index.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <script> </script>
 </head>
 
 <body>
     <header>
-        <h1>Header</h1>
+        GeoTown
     </header>
 
     <script>//add row to table when click submit
-        function myCreateFunction() {
+        function submitFunction() {
           var table = document.getElementById("myTable");
           var row = table.insertRow(0);
           var cell1 = row.insertCell(0);
@@ -26,20 +28,24 @@
           cell4.innerHTML = "Temp";
         }
 
+        function finishFunction() {
+          
+        }
     </script>
 
 
     <div class="mainDiv">
 
         <div class="leftSide">
-            <div class="inputs">
+            
+          <div class="inputs">
                 <h1>Left side</h1>
                 <form>
                     <input type="text" id="town" name="town"> </input>
                     
                 </form>
-                <button onclick="myCreateFunction()">Create row</button>
-                    <button onclick="myFunction()">finish</button>
+                <button onclick="submitFunction()">submit</button>
+                    <button onclick="finishFunction()">finish</button>
             </div>
             
             <div class="population">
@@ -76,8 +82,6 @@
         <div class="rightSide">
             <h1>Right side</h1>
             
-        </div>
-    </div>
 
 </body>
 
