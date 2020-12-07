@@ -1,8 +1,15 @@
+/**
+ * Creates a new instance of Database.
+ */
 function Database() {
     this.cityList = [];
     this.districtCount = 0;
+    this.readJSONFile();
 }
 
+/**
+ * Reads the JSON file of database.
+ */
 Database.prototype.readJSONFile = function() {
     var connection = new XMLHttpRequest();
     connection.onreadystatechange = readData;
@@ -23,6 +30,10 @@ Database.prototype.readJSONFile = function() {
     }
 }
 
+/**
+ * Finds all districts with the given name and returns.
+ * @param {string} name 
+ */
 Database.prototype.getDistricts = function (name) {
     var found = [];
     for (var city in this.cityList) {
@@ -33,6 +44,9 @@ Database.prototype.getDistricts = function (name) {
     return found;
 }
 
+/**
+ * Returns all districts available in the database.
+ */
 Database.prototype.getAllDistricts = function () {
     var districts = [];
     for (var city in this.cityList) {
@@ -41,6 +55,9 @@ Database.prototype.getAllDistricts = function () {
     return districts;
 }
 
+/**
+ * Returns how many districts there are.
+ */
 Database.prototype.getDistrictCount = function () {
     return this.districtCount;
 }
