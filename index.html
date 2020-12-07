@@ -2,86 +2,168 @@
 <html>
 
 <head>
-    <title>GeoTown</title>
-    <link rel="stylesheet" href="index.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <script> </script>
+  <title>GeoTown</title>
+  <link rel="stylesheet" href="index.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script> </script>
 </head>
 
 <body>
-    <header>
-        GeoTown
-    </header>
+  <header>
+    GeoTown
+  </header>
 
-    <script>//add row to table when click submit
-        function submitFunction() {
-          var table = document.getElementById("myTable");
-          var row = table.insertRow(0);
-          var cell1 = row.insertCell(0);
-          var cell2 = row.insertCell(1);
-          var cell3 = row.insertCell(2);
-          var cell4 = row.insertCell(3);
-          cell1.innerHTML = "Temp";
-          cell2.innerHTML = "Temp";
-          cell3.innerHTML = "Temp";
-          cell4.innerHTML = "Temp";
-        }
+  <script>//add row to table when click submit
+    function submitFunction() {
+      var table = document.getElementById("myTable");
+      var row = table.insertRow(table.rows.length - 1);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      cell1.innerHTML = "Temp";
+      cell2.innerHTML = "Temp";
+      cell3.innerHTML = "Temp";
+      cell4.innerHTML = "Temp";
+    }
 
-        function finishFunction() {
+    function finishFunction() {
+
+      document.getElementsByClassName("leftSide")[0].innerHTML =
+
+        `<div class="inputs">
+        <h1>Left side</h1>
+ 
+          <input type="text" id="town" name="town"> </input>
+    
+        <button onclick="submitFunction()" disabled>submit</button>
+        <button onclick="finishFunction()">finish</button>
+      </div>
+      
+      <div class="finishWork">
+
+        <table id="myTableFinish">
+
+          <tr><b>
+          <td>City</td>
+          <td>Town</td>
+          <td>Population</td>
+        </tr>
+
+          <tr>
+            <td>Temsadasdp</td>
+            <td>Tesdsadmp</td>
+            <td>Tesadsadmp</td>
+
+          </tr>
+          <tr>
+            <td>Tesdasadmp</td>
+            <td>Teasdasdmp</td>
+            <td>Tsadsademp</td>
+
+          </tr>
+          <tr>
+            <td>Tesdsadmp</td>
+            <td>sadsasa</td>
+            <td>Tesdasadmp</td>
+
+          </tr>
           
-        }
-    </script>
+        </table>
+      </div>
+      
+      <div class="finishWork">
+
+        <table id="myTableFinish">
+
+          <tr><b>
+          <td>City</td>
+          <td>Town</td>
+          <td>Area</td></b>
+        </tr>
+
+      <tr>
+        <td>Temsadasdp</td>
+        <td>Tesdsadmp</td>
+        <td>Tesadsadmp</td>
+
+      </tr>
+        <tr>
+        <td>Tesdasadmp</td>
+          <td>Teasdasdmp</td>
+        <td>Tsadsademp</td>
+
+      </tr>
+      <tr>
+        <td>Tesdsadmp</td>
+        <td>sadsasa</td>
+        <td>Tesdasadmp</td>
+
+      </tr>
+      
+    </table>
+</div>`;
+
+    }
+  </script>
 
 
-    <div class="mainDiv">
+  <div class="mainDiv">
 
-        <div class="leftSide">
-            
-          <div class="inputs">
-                <h1>Left side</h1>
-                <form>
-                    <input type="text" id="town" name="town"> </input>
-                    
-                </form>
-                <button onclick="submitFunction()">submit</button>
-                    <button onclick="finishFunction()">finish</button>
-            </div>
-            
-            <div class="population">
-                      <tr><b>
-                        <td>City</td>
-                        <td>Town</td>
-                        <td>Population</td>
-                        <td>Area</td></b>
-                      </tr>
-                <table id="myTable">
+    <div class="leftSide">
+      <div class="inputs">
+        <h1>Left side</h1>
 
-                      <tr>
-                        <td>Temp</td>
-                        <td>Temp</td>
-                        <td>Temp</td>
-                        <td>Temp</td>
-                      </tr>
-                      <tr>
-                        <td>Temp</td>
-                        <td>Temp</td>
-                        <td>Temp</td>
-                        <td>Temp</td>
-                      </tr>
-                      <tr>
-                        <td>Temp</td>
-                        <td>Temp</td>
-                        <td>Temp</td>
-                        <td>Temp</td>
-                      </tr>
-                  </table>  
-            </div>
-        </div>
+        <input type="text" id="town" name="town"> </input>
 
-        <div class="rightSide">
-            <h1>Right side</h1>
-            
+
+        <button id="submitId" onclick="submitFunction()">submit</button>
+        <button onclick="finishFunction()">finish</button>
+
+      </div>
+
+      <div class="population">
+
+        <table id="myTable">
+
+          <tr><b>
+              <td>City</td>
+              <td>Town</td>
+              <td>Population</td>
+              <td>Area</td>
+            </b>
+          </tr>
+
+          <tr>
+            <td>Temp</td>
+            <td>Temp</td>
+            <td>Temp</td>
+            <td>Temp</td>
+          </tr>
+          <tr>
+            <td>Temp</td>
+            <td>Temp</td>
+            <td>Temp</td>
+            <td>Temp</td>
+          </tr>
+          <tr>
+            <td>Temp</td>
+            <td>Temp</td>
+            <td>Temp</td>
+            <td>Temp</td>
+          </tr>
+
+        </table>
+      </div>
+    </div>
+
+    <div class="rightSide">
+      <h1>Right side</h1>
+
+    </div>
+    <div id="clear"></div>
+  </div>
 
 </body>
 
