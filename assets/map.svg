@@ -10,8 +10,11 @@
 				stroke-opacity: 1;
 				stroke-width:0.1;
 			}
-            .district> path {
+            .district > path {
                 fill: #444444;
+            }
+            .highlighted > path {
+                fill: #0E9594;
             }
         </style>
     </defs>
