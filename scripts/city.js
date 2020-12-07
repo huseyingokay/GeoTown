@@ -15,6 +15,10 @@ City.prototype.addDistrict = function (district) {
     this.districtList.push(district);
 }
 
+/**
+ * Returns the district of a city with the given name.
+ * @param {string} name 
+ */
 City.prototype.getDistrict = function (name) {
     for (var district in this.districtList) {
         if(district.name == name)
