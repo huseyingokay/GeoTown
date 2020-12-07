@@ -4,6 +4,7 @@
 <head>
     <title>GeoTown</title>
     <link rel="stylesheet" href="index.css" />
+    <script> </script>
 </head>
 
 <body>
@@ -14,18 +15,31 @@
     <div class="mainDiv">
 
         <div class="leftSide">
-
             <div class="inputs">
                 <h1>Left side</h1>
-                <form>
+                <script>
+                    function addTown() {
+                        var table = document.getElementById("populationTable");
+                        var row = table.insertRow(0);
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
+                        var cell3 = row.insertCell(2);
+                        var cell4 = row.insertCell(3);
+                        cell1.innerHTML = "NEW CELL1";
+                        cell2.innerHTML = "NEW CELL2";
+                        cell3.innerHTML = "NEW CELL2";
+                        cell4.innerHTML = "NEW CELL2";
+                    }
+                </script>
+                <form action="" onsubmit="return addTown();">
                     <input type="text" id="town" name="town"> </input>
                     <input type="submit" value="submit">
                     <button onclick="myFunction()">finish</button>
                 </form>
             </div>
-
+            
             <div class="population">
-                <table class="table table-bordered table-hover">
+                <table id="populationTable" class="populationTablesadas">
                     <thead>
                       <th scope="col">City</th>
                       <th scope="col">Town</th>
