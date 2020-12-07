@@ -23,8 +23,16 @@ Map.prototype.zoom = function (amount) {
 
 }
 
-Map.prototype.updateMap = function (districts) {
-
+Map.prototype.updateMap = function (districtName) {
+    var districts = document.getElementsByClassName("district");
+    var count = 0;
+    for (var i = 0; i < districts.length; ++i) {
+        if (districts[i].id == districtName) {
+            districts[i].classList.add("highlighted");
+            ++count;
+        }
+    }
+    return count != 0;
 }
 
 Map.prototype.setClickable = function () {
