@@ -1,5 +1,5 @@
 function Map() {
-    this.svgImage = this.loadSVGMap();
+    this.svgImage = null;
     this.isClickable = false;
 }
 
@@ -34,3 +34,5 @@ Map.prototype.setClickable = function () {
 Map.prototype.onClick = function (e) {
 
 }
+
+var TownMap = new Map();

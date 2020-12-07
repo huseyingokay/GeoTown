@@ -61,3 +61,5 @@ Database.prototype.getAllDistricts = function () {
 Database.prototype.getDistrictCount = function () {
     return this.districtCount;
 }
+
+var TownDatabase = new Database();
