@@ -22,7 +22,7 @@ header {
 }
 
 .leftSide{
-    width: 40%;
+    width: 35%;
     height: 100%;
     display: inline-block;
     float: left;
@@ -41,7 +41,7 @@ header {
 }
 
 .rightSide{
-    width: 60%;
+    width: 65%;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
