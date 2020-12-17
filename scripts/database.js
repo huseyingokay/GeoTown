@@ -35,12 +35,24 @@ Database.prototype.readJSONFile = function () {
  * Finds all districts with the given name and returns.
  * @param {string} name 
  */
+Database.prototype.getDistrict = function (cityName, districtName) {
+    for (var i = 0; i < this.cityList.length; ++i) {
+        if (this.cityList[i].name == cityName)
+            return this.cityList[i].getDistrict(districtName);
+    }
+    return null;
+}
+
+/**
+ * Finds all districts with the given name and returns.
+ * @param {string} name 
+ */
 Database.prototype.getDistricts = function (name) {
     var found = [];
-    for (var city in this.cityList) {
-        var district = city.getDistrict(name);
+    for (var i = 0; i < this.cityList.length; ++i) {
+        var district = this.cityList[i].getDistrict(name);
         if (district != null)
-            this.found.push(district);
+            found.push(district);
     }
     return found;
 }
@@ -50,8 +62,8 @@ Database.prototype.getDistricts = function (name) {
  */
 Database.prototype.getAllDistricts = function () {
     var districts = [];
-    for (var city in this.cityList) {
-        districts = districts.concat(city.districtList);
+    for (var i = 0; i < this.cityList.length; ++i) {
+        districts = districts.concat(this.cityList[i].districtList);
     }
     return districts;
 }
