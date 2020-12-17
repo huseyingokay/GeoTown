@@ -20,9 +20,11 @@ City.prototype.addDistrict = function (district) {
  * @param {string} name 
  */
 City.prototype.getDistrict = function (name) {
-    for (var district in this.districtList) {
-        if(district.name == name)
+    for (var i = 0; i < this.districtList.length; ++i) {
+        var district = this.districtList[i];
+        if (district.name.localeCompare(name, 'tr', { sensitivity: 'base' }) == 0) {
             return district;
+        }
     }
     return null;
 }
