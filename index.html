@@ -55,7 +55,6 @@
 
     //finishes the game
     function finishFunction() {
-
       document.getElementsByClassName("leftSide")[0].innerHTML =
 
         `<div class="inputs">
@@ -137,7 +136,22 @@
       else
         alert(Game.getSessionInformation());
       }
-
+    //sets confetti animations for the end of the game
+    function congratulate() {
+      document.getElementById("header").insertAdjacentHTML("afterend", `<canvas id="animation" style="width: 100%; height: 100%; position: absolute; top: 0px; left: 0px; pointer-events: none;"></canvas>`);
+      var confettiSettings = {
+        target: 'animation',
+        max: 100,
+        size: 1.2,
+        clock: 50,
+        start_from_edge: true,
+        rotate: true,
+        props: ['square', 'triangle', 'line', { "type": "svg", "src": "assets/flag.svg" }],
+        colors: [[212, 188, 155], [206, 127, 106], [201, 66, 57], [196, 5, 9]]
+      };
+      var confetti = new ConfettiGenerator(confettiSettings);
+      confetti.render();
+    }
   </script>
 
   <div class="mainDiv">
