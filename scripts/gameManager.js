@@ -3,7 +3,7 @@
  * the interface between the webpage and the game.
  */
 function GameManager() {
-    this.createGameSession();    
+    this.createGameSession();
 }
 
 /**
@@ -11,6 +11,33 @@ function GameManager() {
  */
 GameManager.prototype.init = function () {
     TownMap.loadSVGMap();
+    this.sound = new Audio();
+    this.sound.src = "./assets/sound.mp3";
+}
+
+GameManager.prototype.endGame = function () {
+    finishFunction();
+    var svg = document.getElementsByClassName("district");
+    for (var i = 0; i < svg.length; ++i) {
+        svg[i].classList.add("finished");
+    }
+    this.finished = true;
+    if (this.isWin()) {
+        congratulate();
+        this.sound.play();
+    }
+
+}
+
+GameManager.prototype.findAll = function () {
+    var districts = TownDatabase.getAllDistricts();
+    for (var i = 0; i < districts.length; ++i) {
+        if (!this.foundDistricts.includes(districts[i])) {
+            TownMap.updateMap(districts[i].name);
+            this.foundDistricts.push(districts[i]);
+        }
+    }
+    this.endGame();
 }
 
 /**
@@ -18,6 +45,7 @@ GameManager.prototype.init = function () {
  */
 GameManager.prototype.createGameSession = function () {
     this.foundDistricts = [];
+    this.finished = false;
     this.startTime = null;
     this.endTime = null;
 }
@@ -26,12 +54,16 @@ GameManager.prototype.createGameSession = function () {
  * Returns if the game is over. If the game is over stops the timer.
  */
 GameManager.prototype.isGameOver = function () {
-    if (this.foundDistricts.length == TownDatabase.districtCount) {
+    if (this.isWin()) {
         if (this.endTime == null)
             this.endTime = new Date();
         return true;
     }
     return false;
+}
+
+GameManager.prototype.isWin = function () {
+    return this.foundDistricts.length == TownDatabase.districtCount;
 }
 
 /**
@@ -43,19 +75,15 @@ GameManager.prototype.isGameOver = function () {
  * @param {string} districtName 
  */
 GameManager.prototype.giveInput = function (districtName) {
-    TownMap.updateMap(districtName);
-    /*
     if (this.startTime == null)
         this.startTime = new Date();
     var districts = TownDatabase.getDistricts(districtName);
-    if (districts.length != 0)
-        if (TownMap.updateMap(districts))
-            return true;
-        else
-            return false;
-    else
+    if (districts.length == 0)
         return null;
-        */
+    if (!TownMap.updateMap(districtName))
+        return false;
+    this.foundDistricts = this.foundDistricts.concat(districts);
+    return districts;
 }
 
 /**
@@ -69,7 +97,20 @@ GameManager.prototype.getHighlightedDistricts = function () {
  * Returns the current game session information.
  */
 GameManager.prototype.getSessionInformation = function () {
-    return `You played for ${this.endTime - this.startTime}. In this session, you found ${this.foundDistricts.length} districts.`;
+    var ms = this.endTime - this.startTime
+    var s = Math.floor(ms / 1000);
+    var m = 0;
+    var h = 0;
+    if (s >= 60) {
+        m = Math.floor(s / 60);
+        s %= 60;
+    }
+    if (m >= 60) {
+        h = Math.floor(s / 60);
+        m %= 60;
+    }
+    var time = ((h != 0) ? h + " hour(s) " : "") + ((m != 0) ? m + " minutes(s) " : "") + ((s != 0) ? s + " second(s)" : "");
+    return `You played for ${time}. In this session, you found ${this.foundDistricts.length} districts.`;
 }
 
 var Game = new GameManager();
