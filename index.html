@@ -52,6 +52,92 @@
         document.getElementById("finishId").disabled = false;
       }
     }
+
+    //finishes the game
+    function finishFunction() {
+
+      document.getElementsByClassName("leftSide")[0].innerHTML =
+
+        `<div class="inputs">
+
+          <h1>How many districts can you name?</h1>
+
+          <input type="text" id="town" name="town" placeholder=" District name" autocomplete="off"></input>
+          
+        <button class="button" onclick="submitFunction()" disabled>Submit</button>
+        <button class="button" onclick="finishFunction()" disabled>Finish</button>
+      </div>
+      <div class="population">
+      <div>
+
+        <table id="informationBoxFinishPopulation" style="float: left; margin-right: 14px; padding-right: 14px; border-right-style: solid; border-right-width: 2px; border-color: white;">
+          <tr style="font-weight: bold;">
+          <td>City</td>
+          <td>District</td>
+          <td>Population</td>
+        </tr>          
+        </table>
+      </div>
+
+      <div>
+        <table id="informationBoxFinishArea">
+
+          <tr style="font-weight: bold;">
+          <td>City</td>
+          <td>District</td>
+          <td>Area (km2)</td>
+        </tr>      
+      </table>
+      </div></div>`;
+
+      var populationSorted = Array.from(Game.foundDistricts);
+      populationSorted.sort(function (a, b) {
+        if (a.population < b.population)
+          return 1;
+        if (a.population > b.population)
+          return -1;
+        return 0;
+      });
+
+      var areaSorted = Array.from(Game.foundDistricts);
+      areaSorted.sort(function (a, b) {
+        if (a.area < b.area)
+          return 1;
+        if (a.area > b.area)
+          return -1;
+        return 0;
+      });
+
+      var table = document.getElementById("informationBoxFinishPopulation");
+      for (var i = 0; i < populationSorted.length; ++i) {
+        var row = table.insertRow(table.rows.length);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        cell1.innerHTML = populationSorted[i].parentCity.name;
+        cell2.innerHTML = populationSorted[i].name;
+        cell3.innerHTML = populationSorted[i].population;
+      }
+
+      table = document.getElementById("informationBoxFinishArea");
+      for (var i = 0; i < areaSorted.length; ++i) {
+        var row = table.insertRow(table.rows.length);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        cell1.innerHTML = areaSorted[i].parentCity.name;
+        cell2.innerHTML = areaSorted[i].name;
+        cell3.innerHTML = areaSorted[i].area;
+      }
+
+      Game.finished = true;
+      Game.endTime = new Date();
+      if (Game.isWin())
+        setTimeout(function () { alert(Game.getSessionInformation()); }, 2000);
+      else
+        alert(Game.getSessionInformation());
+      }
+
   </script>
 
   <div class="mainDiv">
