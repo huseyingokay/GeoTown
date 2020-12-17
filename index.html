@@ -155,47 +155,34 @@
   </script>
 
   <div class="mainDiv">
+
     <div class="leftSide">
       <div class="inputs">
-        <h1>Left side</h1>
-        <input type="text" id="town" name="town"> </input>
-        <button id="submitId" onclick="submitFunction()">submit</button>
-        <button onclick="finishFunction()">finish</button>
+        <h1>How many districts can you name?</h1>
+
+        <input type="text" id="town" name="town" placeholder=" District name" autocomplete="off"
+          onkeydown="submitFunction()"></input>
+
+        <button class="button" id="submitId" onclick="submitFunction()">Submit</button>
+        <button class="button" id="finishId" onclick="Game.endGame()" disabled>Finish</button>
+
       </div>
 
       <div class="population">
-        <table id="myTable">
-          <tr><b>
-              <td>City</td>
-              <td>Town</td>
-              <td>Population</td>
-              <td>Area</td>
-            </b>
-          </tr>
-          <tr>
-            <td>Temp</td>
-            <td>Temp</td>
-            <td>Temp</td>
-            <td>Temp</td>
-          </tr>
-          <tr>
-            <td>Temp</td>
-            <td>Temp</td>
-            <td>Temp</td>
-            <td>Temp</td>
-          </tr>
-          <tr>
-            <td>Temp</td>
-            <td>Temp</td>
-            <td>Temp</td>
-            <td>Temp</td>
+
+        <table id="informationBox">
+
+          <tr style="font-weight: bold;">
+            <td>City</td>
+            <td>Town</td>
+            <td>Population</td>
+            <td>Area (km2)</td>
           </tr>
         </table>
       </div>
     </div>
 
     <div class="rightSide">
-      <h1>Right side</h1>
       <div id="map"></div>
     </div>
     <div id="clear"></div>
