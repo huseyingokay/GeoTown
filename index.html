@@ -11,6 +11,8 @@
   <script src="scripts/district.js"></script>
   <script src="scripts/gameManager.js"></script>
   <script src="scripts/map.js"></script>
+  <script src="http://ariutta.github.io/svg-pan-zoom/dist/svg-pan-zoom.min.js"></script>
+  <script src="scripts/confetti.js"></script>
 </head>
 
 <body onload="Game.init()">
@@ -18,120 +20,51 @@
     GeoTown
   </header>
 
-  <script>//add row to table when click submit
+  <script>
+    //adds row to table when click submit
     function submitFunction() {
-      Game.giveInput(document.getElementById("town").value);
-      var table = document.getElementById("myTable");
-      var row = table.insertRow(table.rows.length - 1);
-      var cell1 = row.insertCell(0);
-      var cell2 = row.insertCell(1);
-      var cell3 = row.insertCell(2);
-      var cell4 = row.insertCell(3);
-      cell1.innerHTML = "Temp";
-      cell2.innerHTML = "Temp";
-      cell3.innerHTML = "Temp";
-      cell4.innerHTML = "Temp";
-    }
+      if (event.type == "click" || event.key == 'Enter') {
+        if (document.getElementById("town").value == "#") {
+          Game.findAll();
+          return;
+        }
 
-    function finishFunction() {
-
-      document.getElementsByClassName("leftSide")[0].innerHTML =
-
-        `<div class="inputs">
-        <h1>Left side</h1>
- 
-          <input type="text" id="town" name="town"> </input>
-    
-        <button onclick="submitFunction()" disabled>submit</button>
-        <button onclick="finishFunction()">finish</button>
-      </div>
-      
-      <div class="finishWork">
-
-        <table id="myTableFinish">
-
-          <tr><b>
-          <td>City</td>
-          <td>Town</td>
-          <td>Population</td>
-        </tr>
-
-          <tr>
-            <td>Temsadasdp</td>
-            <td>Tesdsadmp</td>
-            <td>Tesadsadmp</td>
-
-          </tr>
-          <tr>
-            <td>Tesdasadmp</td>
-            <td>Teasdasdmp</td>
-            <td>Tsadsademp</td>
-
-          </tr>
-          <tr>
-            <td>Tesdsadmp</td>
-            <td>sadsasa</td>
-            <td>Tesdasadmp</td>
-
-          </tr>
-          
-        </table>
-      </div>
-      
-      <div class="finishWork">
-
-        <table id="myTableFinish">
-
-          <tr><b>
-          <td>City</td>
-          <td>Town</td>
-          <td>Area</td></b>
-        </tr>
-
-      <tr>
-        <td>Temsadasdp</td>
-        <td>Tesdsadmp</td>
-        <td>Tesadsadmp</td>
-
-      </tr>
-        <tr>
-        <td>Tesdasadmp</td>
-          <td>Teasdasdmp</td>
-        <td>Tsadsademp</td>
-
-      </tr>
-      <tr>
-        <td>Tesdsadmp</td>
-        <td>sadsasa</td>
-        <td>Tesdasadmp</td>
-
-      </tr>
-      
-    </table>
-</div>`;
-
+        var districts = Game.giveInput(document.getElementById("town").value);
+        if (districts == null)
+          alert("No district found with that name.")
+        else if (districts == false)
+          alert("District(s) already found.")
+        else {
+          var table = document.getElementById("informationBox");
+          for (var i = 0; i < districts.length; ++i) {
+            var row = table.insertRow(table.rows.length);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            cell1.innerHTML = districts[i].parentCity.name;
+            cell2.innerHTML = districts[i].name;
+            cell3.innerHTML = districts[i].population;
+            cell4.innerHTML = districts[i].area;
+          }
+        }
+        document.getElementById("town").value = "";
+        document.getElementById("finishId").disabled = false;
+      }
     }
   </script>
 
-
   <div class="mainDiv">
-
     <div class="leftSide">
       <div class="inputs">
         <h1>Left side</h1>
-
         <input type="text" id="town" name="town"> </input>
-
-
         <button id="submitId" onclick="submitFunction()">submit</button>
         <button onclick="finishFunction()">finish</button>
-
       </div>
 
       <div class="population">
-
         <table id="myTable">
-
           <tr><b>
               <td>City</td>
               <td>Town</td>
@@ -139,7 +72,6 @@
               <td>Area</td>
             </b>
           </tr>
-
           <tr>
             <td>Temp</td>
             <td>Temp</td>
@@ -158,7 +90,6 @@
             <td>Temp</td>
             <td>Temp</td>
           </tr>
-
         </table>
       </div>
     </div>
@@ -171,5 +102,4 @@
   </div>
 
 </body>
-
 </html>
