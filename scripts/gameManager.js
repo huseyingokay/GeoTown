@@ -15,6 +15,9 @@ GameManager.prototype.init = function () {
     this.sound.src = "./assets/sound.mp3";
 }
 
+/**
+ * Finishes the current game session.
+ */
 GameManager.prototype.endGame = function () {
     finishFunction();
     var svg = document.getElementsByClassName("district");
@@ -29,6 +32,9 @@ GameManager.prototype.endGame = function () {
 
 }
 
+/**
+ * Finds all districts and updates the webpage accordingly.
+ */
 GameManager.prototype.findAll = function () {
     var districts = TownDatabase.getAllDistricts();
     for (var i = 0; i < districts.length; ++i) {
@@ -62,6 +68,9 @@ GameManager.prototype.isGameOver = function () {
     return false;
 }
 
+/**
+ * Returns if the current game is a win or not.
+ */
 GameManager.prototype.isWin = function () {
     return this.foundDistricts.length == TownDatabase.districtCount;
 }

@@ -112,8 +112,6 @@ header {
     background-color: #c94239;
 }
 
-/*buradan aşağısı scrollbar için*/
-
 ::-webkit-scrollbar {
     width: 10px;
 }

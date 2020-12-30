@@ -32,8 +32,9 @@ Database.prototype.readJSONFile = function () {
 }
 
 /**
- * Finds all districts with the given name and returns.
- * @param {string} name 
+ * Finds the district in the given city with the given name and returns.
+ * @param {string} cityName 
+ * @param {string} districtName
  */
 Database.prototype.getDistrict = function (cityName, districtName) {
     for (var i = 0; i < this.cityList.length; ++i) {
